@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="greyA">#aaaaaa</color>
+    <color name="white">#ffffff</color>
+    <color name="skyBlue">#87CEEB</color>
+    <color name="seaBlue">#00aff0</color>
+    <color name="walletBlue">#359ef5</color>
+    <color name="transparent">#00000000</color>
+    <color name="green_price">#1e874a</color>
+    <color name="add_cart">#ff771b</color>
+    <color name="branch_center_top">#F88668</color>
+</resources>
