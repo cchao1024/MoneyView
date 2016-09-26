@@ -19,7 +19,8 @@ but,写完不久，发现妹子在另外的页面也用了这样的样式，但�
 #attrs
 其实还可能有更多的，不过她如果这么过分的话，我就继承ViewGroup的子类了，哼。
 好了，根据上述规定，程序员写出了下列attr：
-` <!--金额 样式  元大 角分小 $25.33-->
+```
+ <!--金额 样式  元大 角分小 $25.33-->
     <declare-styleable name="MoneyView">
         <!--金额-->
         <attr name="money_text" format="string"/>
@@ -44,17 +45,16 @@ but,写完不久，发现妹子在另外的页面也用了这样的样式，但�
         <!--是否使用千分符-->
         <attr name="grouping" format="boolean"/>
     </declare-styleable>
-` 
+```
 #constructor
 没错，各位看官也可以有这样的思路去自定义View，先想好可能的拓展，再列出attr，最后才开始写代码。
 好，既然我们写完了attr，就开始去学代码了。先new 一个Class 名字叫做MoneyView，然后复写其三个构造方法：
 
+ ```
  
-
-       `public MoneyView ( Context context ) {
+      public MoneyView ( Context context ) {
                 this ( context, null );
         }
-
         public MoneyView ( Context context, AttributeSet attrs ) {
                 this ( context, attrs, 0 );
         }
@@ -81,15 +81,16 @@ but,写完不久，发现妹子在另外的页面也用了这样的样式，但�
                 mPointPaddingRight = typedArray.getDimensionPixelSize ( R.styleable.MoneyView_point_padding_right, mPointPaddingRight );
                 mIsGroupingUsed = typedArray.getBoolean ( R.styleable.MoneyView_grouping, false );
                 typedArray.recycle ( );
-        }`
+        }
+        
 
 通过TypedArray 获取我们刚才写的attr
-`public int getDimensionPixelSize(int index, int defValue) {`
+public int getDimensionPixelSize(int index, int defValue) {`
 用户不输入我们就给予默认值。默认在声明成员属性处已经给出。
 #onMeasure
 那，现在我们也获取到用户设置的属性了，现在就要调用onMeasure去计算这个自定义MoneyView占据的宽高了。（代码有删减）
-`
 
+```
 	@Override
         protected void onMeasure ( int widthMeasureSpec, int heightMeasureSpec ) {
                 int width;
@@ -132,21 +133,20 @@ but,写完不久，发现妹子在另外的页面也用了这样的样式，但�
                 }
                 setMeasuredDimension ( width, height );
         }
-`
+```
 我们分别计算前缀，元，分占据的宽高，然后对比，取最高的一个作为MoneyView的高。
 这里获取了最大文本的基线值maxDescent。这里需要注意一点，canvas.drawText是根据**baseLine（基线）**绘制的，这和我们小时候用四线纸去写字母一个意思，如下图：
 
 ![e038aae657b1832ecc32c336c6075ffc.jpg](http://upload-images.jianshu.io/upload_images/1633382-3d481176069c4df0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 #onDraw
 所以我们再onDraw()时要在Y轴上加上基线距离底部的值，才是我们需要绘制的，**绘制过程会将文本居中。**
-`
 
+```
      @Override
      protected void onDraw ( Canvas canvas ) {
 		//绘制X坐标
 		int drawX = ( getMeasuredWidth ( ) - mTextWidth ) / 2;
 		float drawY = ( getMeasuredHeight ( ) + mTextHeight ) / 2 - maxDescent;
-
 		//绘制前缀
 		mPaint.setColor ( mPrefixColor );
 		mPaint.setTextSize ( mPrefixSize );
@@ -163,17 +163,18 @@ but,写完不久，发现妹子在另外的页面也用了这样的样式，但�
 		drawX += mPointPaddingRight;
 		mPaint.setTextSize ( mCentSize );
 		canvas.drawText ( mCent, drawX, drawY, mPaint );
-     }`
+     }
+     
+
+```
 OK，那这个MoneyView 就可以拿来用了，这是全部代码的地址：
 [github：https://github.com/cchao1024/MoneyView](https://github.com/cchao1024/MoneyView)
 笔者试图将他放到Jcenter，但是gradlew install 时报 GBK什么鬼，没解决，算了，代码也不多。
 如果看官需要使用该View。只需将github上monveyView/res/attrs 里面的moneyView 复制到你项目的Attrs  ,再复制整个MoneyView 到你项目的里，然后编写layout的时候引用，就可能跑的欢快了。like this：
-`
-
-    <com.github.cchao.MoneyView
+```
+<com.github.cchao.MoneyView
 	      android:layout_width="wrap_content"
 	      android:layout_height="wrap_content"
 	      money:money_text="789456.123"/>
- 
-`
+ ```
 显示效果就是效果图的第一个。
