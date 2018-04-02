@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         money:money_text="789456.123"/>
+
     <com.github.cchao.MoneyView
         android:id="@+id/money_view_1"
         android:layout_width="match_parent"
@@ -25,6 +26,7 @@
         money:point_padding_left="15dp"
         money:point_padding_right="18dp"
         money:prefix_text="$"/>
+
     <com.github.cchao.MoneyView
         android:id="@+id/money_view_2"
         android:layout_width="wrap_content"
@@ -41,6 +43,7 @@
         money:prefix_size="26sp"
         money:prefix_color="@color/green_price"
         money:prefix_padding="15dp"/>
+
     <com.github.cchao.MoneyView
         android:id="@+id/money_view_3"
         android:layout_width="match_parent"

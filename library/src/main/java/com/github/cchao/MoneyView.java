@@ -34,9 +34,9 @@ public class MoneyView extends View {
     /**
      * 文本 元的大小
      */
-    private long mYuanSize = sp2px(18);
-    private long mCentSize = sp2px(14);
-    private long mPrefixSize = sp2px(12);
+    private int mYuanSize = sp2px(18);
+    private int mCentSize = sp2px(14);
+    private int mPrefixSize = sp2px(12);
     private int mPrefixPadding = dp2px(4); //小数点与分的间隔
     private int mPointPaddingLeft = dp2px(3); //小数点与分的间隔
     private int mPointPaddingRight = dp2px(4); //小数点与分的间隔
@@ -129,9 +129,7 @@ public class MoneyView extends View {
         //文本占据的宽度
         mTextWidth = mYuanBound.width() + mCentBound.width() + mPrefixBound.width() + mPointBound.width()
             + mPointPaddingLeft + mPointPaddingRight + mPrefixPadding;
-        /**
-         * 设置宽度
-         */
+        // 设置宽度
         int specMode = MeasureSpec.getMode(widthMeasureSpec);
         int specSize = MeasureSpec.getSize(widthMeasureSpec);
 
@@ -140,19 +138,17 @@ public class MoneyView extends View {
         } else {
             width = mTextWidth + getPaddingLeft() + getPaddingRight();
         }
-        /**
-         * 设置高度
-         */
-        //获取最大字号
+        // 设置高度
+        // 获取最大字号
         int maxSize = Math.max(mYuanSize, mCentSize);
         maxSize = Math.max(maxSize, mPrefixSize);
         mPaint.setTextSize(maxSize);
-        //获取基线距离底部
+        // 获取基线距离
         maxDescent = mPaint.getFontMetrics().descent;
         int maxHeight = Math.max(mYuanBound.height(), mCentBound.height());
         maxHeight = Math.max(maxHeight, mPrefixBound.height());
-        //文本占据的高度
-        mTextHeight = maxHeight + (int) (maxDescent + 0.5f);
+        // 文本占据的高度 (给顶线和底线留间距)
+        mTextHeight = maxHeight + (int) (maxDescent * 2 + 0.5f);
 
         specMode = MeasureSpec.getMode(heightMeasureSpec);
         specSize = MeasureSpec.getSize(heightMeasureSpec);

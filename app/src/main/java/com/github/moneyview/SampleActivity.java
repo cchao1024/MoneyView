@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+
 import com.github.cchao.MoneyView;
 
 import java.util.Random;
@@ -39,6 +40,6 @@ public class SampleActivity extends AppCompatActivity {
                 });
             }
         };
-        timer.schedule(timerTask, 100, 2000);
+        timer.schedule(timerTask, 100, 1000);
     }
 }
