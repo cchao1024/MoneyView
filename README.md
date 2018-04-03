@@ -197,7 +197,7 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 ![e038aae657b1832ecc32c336c6075ffc.jpg](http://upload-images.jianshu.io/upload_images/1633382-3d481176069c4df0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 # onDraw
-所以我们在 **onDraw()**时要在Y轴上加上基线距离底部的值，才是我们需要绘制的，**绘制过程会将文本居中。**
+所以我们在 **onDraw()**时要在Y轴上加上基线距离底部的值，才是我们需要绘制的， **绘制过程会将文本居中。**
 
 ```
 @Override
