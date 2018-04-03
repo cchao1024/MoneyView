@@ -192,7 +192,7 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 }
 ```
 我们分别计算前缀，元，分占据的宽高，然后对比，取最高的一个作为MoneyView的高。
-这里获取了最大文本的基线值maxDescent。这里需要注意一点，canvas.drawText是根据**baseLine（基线）**绘制的，这和我们小时候用四线纸去写字母一个意思，如下图：
+这里获取了最大文本的基线值maxDescent。这里需要注意一点，canvas.drawText是根据 **baseLine（基线）** 绘制的，这和我们小时候用四线纸去写字母一个意思，如下图：
 
 ![e038aae657b1832ecc32c336c6075ffc.jpg](http://upload-images.jianshu.io/upload_images/1633382-3d481176069c4df0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
