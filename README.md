@@ -1,8 +1,29 @@
+[![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Download](https://api.bintray.com/packages/cchao1024/maven/moneyview/images/download.svg) ](https://bintray.com/cchao1024/maven/moneyview/_latestVersion)
+
 # 效果图：
 
 ![layout-2016-09-01-182947.png](http://upload-images.jianshu.io/upload_images/1633382-5a54c3d1f30cc563.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
+# 使用方式
+
+在 **app的build.gradle** 添加依赖
+```
+compile 'com.github.cchao:moneyview:1.0.1'
+```
+
+在 **XML布局文件** 中引用
+
+```
+<com.github.cchao.MoneyView
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  money:money_text="789456.123"/>
+
+```
+
+显示效果就是效果图的第一个。
 # balabala
 
 故事是这样的：
@@ -206,18 +227,3 @@ protected void onDraw(Canvas canvas) {
 
 OK，那这个MoneyView 就可以拿来用了，这是全部代码的地址：
 [github：https://github.com/cchao1024/MoneyView](https://github.com/cchao1024/MoneyView)
-
-笔者试图将他放到Jcenter，但是gradlew install 时报 GBK什么鬼，没解决，算了，代码也不多。
-如果看官需要使用该View。只需将github上monveyView/res/attrs 里面的moneyView 复制到你项目的Attrs  ,再复制整个MoneyView 到你项目的里，然后编写layout的时候引用，就可能跑的欢快了。
-
-Like this：
-
-```
-<com.github.cchao.MoneyView
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content"
-  money:money_text="789456.123"/>
-
-```
-
-显示效果就是效果图的第一个。
